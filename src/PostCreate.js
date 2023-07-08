@@ -4,11 +4,14 @@ import axios from "axios";
 const PostCreate = () => {
   const [title, setTitle] = useState("");
   const onSubmit = async (event) => {
-    event.preventDefault();
-    await axios.post(`https://post-roan.vercel.app/posts`, {
+    event.preventDefault()
+    if(title!==""){
+    await axios.post(`${process.env.REACT_APP_POST_URL}/posts`, {
       title,
     });
     setTitle("");
+    window.location.reload()
+  }
   };
   return (
     <div>

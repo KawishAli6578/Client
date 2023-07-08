@@ -5,15 +5,17 @@ import CommentCreate from "./CommentCreate";
 const CommentList = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const fetchComments = async () => {
-    const res =await axios.get(`https://coment.vercel.app/posts/${postId}/comments`);
+    const res =await axios.get(`${process.env.REACT_APP_COMMENT_URL}/posts/${postId}/comments`);
+    // console.log(res,"res")
 
     setComments(res.data);
   };
-
   useEffect(() => {
     fetchComments();
   },[]);
+  console.log(comments,"comments")
   const renderComments = comments?.map((comment) => {
+    console.log(comment,"comment");
     return (
       <li style={{ width: "30%", marginBottom: "20px" }} key={comment.id}>
         {comment.content}

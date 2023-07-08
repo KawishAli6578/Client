@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const CommentCreate = ({postId}) => {
+const CommentCreate = ({ postId }) => {
   const [content, setContent] = useState("");
   const onSubmit = async (event) => {
-    event.preventDefault();
-    await axios.post(`https://coment.vercel.app/posts/${postId}/comments`, {
-      content,
-    });
-    setContent("");
+    console.log("hello")
+    event.preventDefault()
+    if (content !== "") {
+    console.log("hello2")
+      await axios.post(`${process.env.REACT_APP_COMMENT_URL}/posts/${postId}/comments`, {
+        content,
+      });
+      setContent("");
+    }
+    window.location.reload()
   };
+
 
   return (
     <div>

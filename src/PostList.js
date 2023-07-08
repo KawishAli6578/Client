@@ -6,8 +6,7 @@ import CommentList from "./CommentList";
 const PostList = () => {
     const [posts, setPosts] = useState({})
     const fetchPosts=async()=>{
-        const res=await axios.get("https://post-roan.vercel.app/posts")
-
+        const res=await axios.get(`${process.env.REACT_APP_POST_URL}/posts`)
         setPosts(res.data)
     }
 
@@ -18,13 +17,13 @@ const PostList = () => {
     // console.log(Object.values(posts),"postsCheck2")
 
     const renderPost=Object.values(posts).map((post)=>{
-        // console.log(post,"post")
+        console.log(post,"post")
         return(
-            <div style={{width:"30%",marginBottom:"20px"}} key={post[0]}>
+            <div style={{width:"30%",marginBottom:"20px"}} key={post._id}>
                <div>
-                <h3>{post[1]}</h3>
-                <CommentList postId={post[0]}/>
-                <CommentCreate postId={post[0]}/>
+                <h3>{post.title[1]}</h3>
+                <CommentList postId={post._id}/>
+                <CommentCreate postId={post._id}/>
                </div>
             </div>
         )
