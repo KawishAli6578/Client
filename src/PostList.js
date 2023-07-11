@@ -9,7 +9,6 @@ const PostList = () => {
         const res=await axios.get(`${process.env.REACT_APP_POST_URL}/posts`)
         setPosts(res.data)
     }
-
     useEffect(() => {
         fetchPosts()
     }, [])

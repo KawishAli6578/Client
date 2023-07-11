@@ -6,11 +6,16 @@ const PostCreate = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     if(title!==""){
+      console.log("window")
     await axios.post(`${process.env.REACT_APP_POST_URL}/posts`, {
       title,
-    });
-    setTitle("");
-    window.location.reload()
+    }).then((res)=>{
+      console.log(res,"res")
+      setTitle("")
+   console.log("work")
+      window.location.reload()
+    })
+    
   }
   };
   return (
